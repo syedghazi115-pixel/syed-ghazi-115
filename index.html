@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Syed Ghazi — Mechanical Engineering Student</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0f1115;
+      --card-bg: #161920;
+      --border: #262a35;
+      --text: #e2e8f0;
+      --text-muted: #94a3b8;
+      --accent: #3b82f6;
+      --accent-hover: #2563eb;
+      --green: #007a33;
+      --gold: #ffdb00;
+      --font-main: 'Inter', system-ui, -apple-system, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: var(--font-main);
+      line-height: 1.6;
+      padding: 2rem 1rem;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    header {
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 2rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .header-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    h1 {
+      font-size: 2.2rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: #fff;
+    }
+
+    .subtitle {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      margin-top: 0.25rem;
+    }
+
+    .ualberta-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(0, 122, 51, 0.15);
+      border: 1px solid rgba(0, 122, 51, 0.4);
+      color: #4ade80;
+      padding: 0.35rem 0.75rem;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      margin-top: 0.75rem;
+    }
+
+    .ualberta-badge span {
+      width: 8px;
+      height: 8px;
+      background-color: var(--gold);
+      border-radius: 50%;
+    }
+
+    .contact-bar {
+      display: flex;
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+      font-size: 0.95rem;
+      flex-wrap: wrap;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--text-muted);
+    }
+
+    .contact-item strong {
+      color: var(--text);
+    }
+
+    section {
+      margin-bottom: 3rem;
+    }
+
+    h2 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+      margin-bottom: 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    h2::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    @media (max-width: 600px) {
+      .grid-2 {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.25rem;
+    }
+
+    .stat-card {
+      text-align: center;
+      padding: 1rem;
+    }
+
+    .stat-val {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #fff;
+      font-family: var(--font-mono);
+    }
+
+    .stat-label {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    .project-card {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .project-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 0.5rem;
+    }
+
+    .project-desc {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+    }
+
+    .tag-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+
+    .tag {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border);
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+      color: #cbd5e1;
+    }
+
+    .timeline-item {
+      position: relative;
+      padding-left: 1.5rem;
+      border-left: 2px solid var(--border);
+      margin-bottom: 1.5rem;
+    }
+
+    .timeline-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -5px;
+      top: 0.3rem;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+
+    .timeline-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .role {
+      font-weight: 600;
+      color: #fff;
+    }
+
+    .date {
+      font-size: 0.85rem;
+      font-family: var(--font-mono);
+      color: var(--text-muted);
+    }
+
+    .org {
+      font-size: 0.9rem;
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+    }
+
+    .timeline-body {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+    }
+
+    .timeline-body ul {
+      padding-left: 1.2rem;
+      margin-top: 0.4rem;
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 0.75rem;
+    }
+
+    .skill-box {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      padding: 0.75rem 1rem;
+      border-radius: 6px;
+    }
+
+    .skill-category {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+      margin-bottom: 0.25rem;
+    }
+
+    .skill-names {
+      font-weight: 500;
+      font-size: 0.95rem;
+      color: #fff;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    label {
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--text-muted);
+    }
+
+    input, textarea {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      padding: 0.75rem;
+      border-radius: 6px;
+      color: var(--text);
+      font-family: inherit;
+      font-size: 0.95rem;
+    }
+
+    input:focus, textarea:focus {
+      outline: none;
+      border-color: var(--accent);
+    }
+
+    button {
+      background: var(--accent);
+      color: white;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
+      align-self: flex-start;
+      transition: background 0.2s;
+    }
+
+    button:hover {
+      background: var(--accent-hover);
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding-top: 1.5rem;
+      margin-top: 4rem;
+      text-align: center;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="header-top">
+      <div>
+        <h1>Syed Ghazi</h1>
+        <div class="subtitle">Mechanical Engineering Co-op Student</div>
+        <div class="ualberta-badge">
+          <span></span> University of Alberta
+        </div>
+      </div>
+    </div>
+
+    <div class="contact-bar">
+      <div class="contact-item">
+        📧 <a href="mailto:sghazi@ualberta.ca">sghazi@ualberta.ca</a>
+      </div>
+      <div class="contact-item">
+        ✉️ <a href="mailto:syedghazi115@gmail.com">syedghazi115@gmail.com</a>
+      </div>
+      <div class="contact-item">
+        📞 <span>(306) 591-3342</span>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Academic Stats Section -->
+    <section>
+      <h2>Academic Summary</h2>
+      <div class="grid-2">
+        <div class="card stat-card">
+          <div class="stat-val">3.81</div>
+          <div class="stat-label">Cumulative GPA</div>
+        </div>
+        <div class="card stat-card">
+          <div class="stat-val">3.92</div>
+          <div class="stat-label">Program Admission Factor (PAF)</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Technical Skills Section -->
+    <section>
+      <h2>Technical Skills</h2>
+      <div class="skills-grid">
+        <div class="skill-box">
+          <div class="skill-category">CAD & Modeling</div>
+          <div class="skill-names">SolidWorks</div>
+        </div>
+        <div class="skill-box">
+          <div class="skill-category">Programming</div>
+          <div class="skill-names">Python, MATLAB</div>
+        </div>
+        <div class="skill-box">
+          <div class="skill-category">Prototyping</div>
+          <div class="skill-names">3D Printing, Additive Mfg</div>
+        </div>
+        <div class="skill-box">
+          <div class="skill-category">Core Focus</div>
+          <div class="skill-names">Mechanical Design, Analysis</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section>
+      <h2>Projects</h2>
+      <div class="grid-2">
+        <div class="card project-card">
+          <div>
+            <div class="project-title">ENGG 160 Design Project</div>
+            <div class="project-desc">Led an award-winning engineering design team through concept selection, SolidWorks CAD modeling, and physical prototype testing.</div>
+          </div>
+          <div class="tag-list">
+            <span class="tag">SolidWorks</span>
+            <span class="tag">Team Lead</span>
+            <span class="tag">Award Winner</span>
+          </div>
+        </div>
+
+        <div class="card project-card">
+          <div>
+            <div class="project-title">Formula SAE Onboarding</div>
+            <div class="project-desc">Participated in team onboarding focused on vehicle component packaging, design requirements, and engineering documentation.</div>
+          </div>
+          <div class="tag-list">
+            <span class="tag">FSAE</span>
+            <span class="tag">CAD Design</span>
+            <span class="tag">Vehicle Dynamics</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Experience Timeline Section -->
+    <section>
+      <h2>Experience & Leadership</h2>
+      
+      <div class="timeline-item">
+        <div class="timeline-header">
+          <span class="role">Academic Tutor</span>
+          <span class="date">Previous</span>
+        </div>
+        <div class="org">Independent</div>
+        <div class="timeline-body">
+          Tutored students in foundational math and science concepts, tailoring explanations to individual learning styles and improving problem-solving approaches.
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-header">
+          <span class="role">Delegate</span>
+          <span class="date">Previous</span>
+        </div>
+        <div class="org">Model United Nations</div>
+        <div class="timeline-body">
+          Engaged in policy debate, multilateral negotiations, and resolution drafting, developing strong public speaking and consensus-building skills.
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Form Section -->
+    <section>
+      <h2>Send a Message</h2>
+      <div class="card">
+        <form onsubmit="event.preventDefault(); alert('Message sent!');">
+          <div class="grid-2">
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input type="text" id="name" placeholder="Your name" required>
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" placeholder="Your email" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" rows="4" placeholder="Your message..." required></textarea>
+          </div>
+          <button type="submit">Send</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; Syed Ghazi — University of Alberta Mechanical Engineering</p>
+  </footer>
+
+</body>
+</html>
